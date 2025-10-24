@@ -1,4 +1,4 @@
-package com.algos.graph;
+package org.example.graph;
 
 public class KruskalTest {
 }
