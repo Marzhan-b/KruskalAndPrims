@@ -1,4 +1,4 @@
-package org.example.cli;
+package org.example.graph;
 
 import java.util.*;
 

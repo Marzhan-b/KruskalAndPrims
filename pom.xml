@@ -71,7 +71,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.example.cli.MSTRunner</mainClass>
+                            <mainClass>org.example.graph.MSTRunner</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
