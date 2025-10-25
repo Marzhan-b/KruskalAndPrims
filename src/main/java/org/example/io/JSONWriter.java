@@ -8,11 +8,12 @@ public class JSONWriter {
 
     public static <T> void writeToJson(String filename, T data) {
         try {
-
             ObjectMapper objectMapper = new ObjectMapper();
+
             objectMapper.writeValue(new File(filename), data);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 }
+
