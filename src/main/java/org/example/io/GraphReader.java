@@ -30,6 +30,7 @@ public class GraphReader {
     }
 }
 
+
 class GraphData {
     private int numVertices;
     private List<EdgeData> edges;
