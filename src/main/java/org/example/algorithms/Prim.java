@@ -1,5 +1,7 @@
 package org.example.algorithms;
 import org.example.graph.*;
+import org.example.model.MSTResult;
+
 import java.util.*;
 public class Prim {
     public MSTResult computeMST(Graph graph) {

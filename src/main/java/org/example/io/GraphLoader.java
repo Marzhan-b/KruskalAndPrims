@@ -3,7 +3,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 
-public class JSONReader {
+public class GraphLoader {
     public static <T> T readFromJson(String filename, Class<T> classType) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();

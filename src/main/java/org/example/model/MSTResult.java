@@ -1,4 +1,6 @@
-package org.example.graph;
+package org.example.model;
+
+import org.example.graph.Edge;
 
 import java.util.List;
 
