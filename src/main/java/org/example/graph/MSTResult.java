@@ -3,22 +3,44 @@ package org.example.graph;
 import java.util.List;
 
 public class MSTResult {
-    public final List<Edge> edges;
-    public final int totalCost;
-    public final int V;
-    public final int E;
-    public final long timeMs;
-    public final String algorithm;
-    public final String graphId;
-
-    public MSTResult(List<Edge> edges, int totalCost, int V, int E,
-                     long timeMs, String algorithm, String graphId) {
-        this.edges = edges;
-        this.totalCost = totalCost;
-        this.V = V;
-        this.E = E;
-        this.timeMs = timeMs;
+    private final String algorithm;
+    private final List<Edge> edges;
+    private final int totalCost;
+    private final long executionTimeMs;
+    private final long operationsCount;
+    private final String graphId;
+    public MSTResult(String algorithm, String graphId, List<Edge> edges,
+                     int totalCost, long executionTimeMs, long operationsCount) {
         this.algorithm = algorithm;
         this.graphId = graphId;
+        this.edges = List.copyOf(edges);
+        this.totalCost = totalCost;
+        this.executionTimeMs = executionTimeMs;
+        this.operationsCount = operationsCount;
+    }
+    public String getAlgorithm() {
+        return algorithm;
+    }
+    public List<Edge> getEdges() {
+        return edges;
+    }
+    public int getTotalCost() {
+        return totalCost;
+    }
+    public long getExecutionTimeMs() {
+        return executionTimeMs;
+    }
+    public long getOperationsCount() {
+        return operationsCount;
+    }
+    public String getGraphId() {
+        return graphId;
+    }
+    @Override
+    public String toString() {
+        return algorithm + " MST: cost=" + totalCost +
+                ", edges=" + edges.size() +
+                ", time=" + executionTimeMs +
+                "ms, ops=" + operationsCount;
     }
 }

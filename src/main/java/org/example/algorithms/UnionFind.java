@@ -1,38 +1,42 @@
 package org.example.algorithms;
 
-public class UnionFind {
-    private final int[] parent;
-    private final int[] rank;
+import java.util.HashMap;
+import java.util.Map;
 
-    public UnionFind(int n) {
-        parent = new int[n];
-        rank = new int[n];
-        for (int i = 0; i < n; i++) {
-            parent[i] = i;
-            rank[i] = 0;
+public class UnionFind {
+    private final Map<String, String> parent = new HashMap<>();
+    private final Map<String, Integer> rank = new HashMap<>();
+    private long operations = 0;
+
+    public void makeSet(Iterable<String> vertices) {
+        for (String v : vertices) {
+            parent.put(v, v);
+            rank.put(v, 0);
         }
     }
-    public int find(int x) {
-        if (parent[x] != x) {
-            parent[x] = find(parent[x]);
+    public String find(String v) {
+        operations++;
+        if (!parent.get(v).equals(v)) {
+            parent.put(v, find(parent.get(v)));
         }
-        return parent[x];
+        return parent.get(v);
     }
-    public boolean union(int a, int b) {
-        int rootA = find(a);
-        int rootB = find(b);
-        if (rootA == rootB) return false;
-        if (rank[rootA] < rank[rootB]) {
-            parent[rootA] = rootB;
-        } else if (rank[rootA] > rank[rootB]) {
-            parent[rootB] = rootA;
+    public void union(String a, String b) {
+        operations++;
+        String rootA = find(a);
+        String rootB = find(b);
+        if (rootA.equals(rootB)) return;
+
+        if (rank.get(rootA) < rank.get(rootB)) {
+            parent.put(rootA, rootB);
+        } else if (rank.get(rootA) > rank.get(rootB)) {
+            parent.put(rootB, rootA);
         } else {
-            parent[rootB] = rootA;
-            rank[rootA]++;
+            parent.put(rootB, rootA);
+            rank.put(rootA, rank.get(rootA) + 1);
         }
-        return true;
     }
-    public boolean same(int a, int b) {
-        return find(a) == find(b);
+    public long getOperations() {
+        return operations;
     }
 }
