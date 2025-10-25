@@ -5,11 +5,9 @@ import java.io.File;
 import java.io.IOException;
 
 public class JSONWriter {
-
     public static <T> void writeToJson(String filename, T data) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-
             objectMapper.writeValue(new File(filename), data);
         } catch (IOException e) {
             e.printStackTrace();
