@@ -5,7 +5,7 @@ public class Graph {
     private final boolean directed;
     private final List<String> vertices;
     private final List<Edge> edges;
-    private final Map<String, List<Edge>> adj; // Список смежности
+    private final Map<String, List<Edge>> adj;
     private final Map<String, Integer> indexMap;
 
     public Graph(String id, boolean directed, List<String> vertices, List<Edge> edges) {
@@ -21,7 +21,6 @@ public class Graph {
             indexMap.put(vertex, i);
             adj.put(vertex, new ArrayList<>());
         }
-
         for (Edge e : edges) {
             adj.get(e.getFrom()).add(e);
             if (!directed) {
