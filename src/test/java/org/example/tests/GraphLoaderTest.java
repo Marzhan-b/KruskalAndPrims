@@ -23,4 +23,10 @@ public class GraphLoaderTest {
             }
         }
     }
+    @Test
+    public void testInvalidGraphFile() {
+        List<Graph> graphs = GraphLoader.loadGraphs("src/main/resources/datasets/invalid_graph.json");
+        assertTrue(graphs.isEmpty(), "Graphs list should be empty when file is invalid.");
+    }
+
 }

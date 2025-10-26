@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class PerformanceTest {
     @Test
     public void runBenchmarkAndProduceCsv() throws Exception {
@@ -55,4 +58,30 @@ public class PerformanceTest {
             }
         }
     }
+    @Test
+    public void testExecutionTimeOnLargeGraph() throws Exception {
+        String[] files = {
+                "src/main/resources/datasets/graphs_large.json",
+                "src/main/resources/datasets/graphs_extra_large.json"
+        };
+
+        for (String file : files) {
+            List<Graph> graphs = GraphLoader.loadGraphs(file);
+            for (Graph graph : graphs) {
+                long startTime = System.nanoTime();
+                MSTResult kruskal = Kruskal.run(graph);
+                long endTime = System.nanoTime();
+                double kruskalTime = (endTime - startTime) / 1_000_000.0;
+                assertTrue(kruskalTime < 2000, "Kruskal execution time is too high for " + graph.id());
+
+                startTime = System.nanoTime();
+                MSTResult prim = new Prim().computeMST(graph);
+                endTime = System.nanoTime();
+                double primTime = (endTime - startTime) / 1_000_000.0;
+                assertTrue(primTime < 2000, "Prim execution time is too high for " + graph.id());
+            }
+        }
+    }
+
+
 }
