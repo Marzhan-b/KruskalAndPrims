@@ -44,14 +44,12 @@ public class CorrectnessTest {
 
         UnionFind uf = new UnionFind();
         for (String v : vertices) uf.add(v);
-
         for (Edge e : edges) {
             String r1 = uf.find(e.getFrom());
             String r2 = uf.find(e.getTo());
             assertNotEquals(r1, r2, "MST must be acyclic");
             uf.union(e.getFrom(), e.getTo());
         }
-
         String root = uf.find(vertices.get(0));
         for (String v : vertices) {
             assertEquals(root, uf.find(v), "MST must connect all vertices");
@@ -60,7 +58,6 @@ public class CorrectnessTest {
         assertTrue(mst.getExecutionTimeMs() >= 0, "ExecutionTimeMs must be non-negative");
         assertTrue(mst.getOperationsCount() >= 0, "OperationsCount must be non-negative");
     }
-
     private boolean isConnected(Graph graph) {
         if (graph.V() == 0) return true;
         Set<String> visited = new HashSet<>();

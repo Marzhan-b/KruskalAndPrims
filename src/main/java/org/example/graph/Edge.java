@@ -14,9 +14,15 @@ public class Edge implements Comparable<Edge> {
         this.to = to;
         this.weight = weight;
     }
-    public String getFrom() { return from; }
-    public String getTo() { return to; }
-    public int getWeight() { return weight; }
+    public String getFrom() {
+        return from;
+    }
+    public String getTo() {
+        return to;
+    }
+    public int getWeight() {
+        return weight;
+    }
 
     public Edge reversed() {
         return new Edge(to, from, weight);
