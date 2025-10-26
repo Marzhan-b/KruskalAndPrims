@@ -2,7 +2,7 @@
 # Assignment 3 by Tulebayeva Marzhan from SE-2423
 # **In-depth Analytical Report on Prim's and Kruskal's Algorithms**
 ## 1. Introduction
-In the study of Minimum Spanning Trees (MSTs), Prim’s and Kruskal’s algorithms stand as two of the most commonly used methods for solving the problem. Both are greedy algorithms, but they differ in the approach they take to select edges and form the tree. In this report, we analyze these algorithms in terms of their theoretical foundations, their performance in practice, and their implementation in the context of a project. The analysis is based on a repository, [KruskalAndPrims](https://github.com/Marzhan-b/KruskalAndPrims), which provides Java implementations for both algorithms.
+In the study of Minimum Spanning Trees (MSTs), Prim’s and Kruskal’s algorithms stand as two of the most commonly used methods for solving the problem. Both are greedy algorithms, but they differ in the approach they take to select edges and form the tree. In this report, we analyze these algorithms in terms of their theoretical foundations, their performance in practice, and their implementation in the context of a project. The analysis is based on a repository, [KruskalAndPrims], which provides Java implementations for both algorithms.
 ### Project Directory Structure Overview:
 Before diving into the core of the analysis, let’s first take a look at the structure of the project. Here is the organization of the files and directories used in the project:
 
