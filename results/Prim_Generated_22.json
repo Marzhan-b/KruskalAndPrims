@@ -1,0 +1,1 @@
+{"algorithm":"Prim","graphId":"Generated_22","edges":[{"from":"N0","to":"N3","weight":4},{"from":"N0","to":"N1","weight":4},{"from":"N1","to":"N4","weight":13}],"totalCost":21.0,"executionTimeMs":0.0168,"operationsCount":12}

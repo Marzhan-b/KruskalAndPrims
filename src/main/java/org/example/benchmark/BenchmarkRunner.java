@@ -10,9 +10,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.*;
-
 public class BenchmarkRunner {
     private static final int REPEAT_COUNT = 100;
+    private static final int MAX_GRAPHS = 28;
     public static void main(String[] args) throws Exception {
         String[] files = {
                 "src/main/resources/datasets/graphs_small.json",
@@ -20,17 +20,23 @@ public class BenchmarkRunner {
                 "src/main/resources/datasets/graphs_large.json",
                 "src/main/resources/datasets/graphs_extra_large.json"
         };
-
         List<MSTOutput> outputs = new ArrayList<>();
         Prim primAlg = new Prim();
         List<CSVRecord> csvRecords = new ArrayList<>();
+        int globalId = 1;
+
+        int processedGraphs = 0;
+
         for (String file : files) {
             System.out.println("Loading graphs from: " + file);
             List<Graph> graphs = GraphLoader.loadGraphs(file);
             if (graphs == null || graphs.isEmpty()) continue;
 
             for (Graph g : graphs) {
+                if (processedGraphs >= MAX_GRAPHS) break;
+
                 if (!isConnected(g)) continue;
+                g.setId(String.valueOf(globalId++));
 
                 System.out.println("Running algorithms for graph: " + g.id());
 
@@ -74,16 +80,20 @@ public class BenchmarkRunner {
                 System.out.printf(Locale.US,
                         "Graph %s → Kruskal=%.6f ms | Prim=%.6f ms%n",
                         g.id(), avgKruskalTime, avgPrimTime);
+
+                processedGraphs++;
+            }
+            if (processedGraphs >= MAX_GRAPHS) {
+                break;
             }
         }
         csvRecords.sort((r1, r2) -> {
-            int graphIdComparison = r1.graphId.compareTo(r2.graphId);
+            int graphIdComparison = Integer.compare(Integer.parseInt(r1.graphId), Integer.parseInt(r2.graphId));
             if (graphIdComparison == 0) {
                 return r1.algorithm.equals("Kruskal") ? -1 : 1;
             }
             return graphIdComparison;
         });
-
         ObjectMapper mapper = new ObjectMapper();
         File jsonFile = new File("src/main/resources/datasets/output.json");
         jsonFile.getParentFile().mkdirs();
@@ -99,8 +109,6 @@ public class BenchmarkRunner {
                         r.executionTimeMs, r.operationsCount, r.totalCost);
             }
         }
-
-        System.out.println("Benchmark finished. Results saved to CSV & JSON.");
     }
     private static boolean isConnected(Graph graph) {
         if (graph.V() == 0) return true;
@@ -122,6 +130,7 @@ public class BenchmarkRunner {
         }
         return visited.size() == graph.V();
     }
+
     private static class CSVRecord {
         String graphId;
         String algorithm;

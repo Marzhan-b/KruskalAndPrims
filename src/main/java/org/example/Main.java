@@ -13,7 +13,7 @@ public class Main {
                 "src/main/resources/jsons/graphs_small.json",
                 "src/main/resources/jsons/graphs_medium.json",
                 "src/main/resources/jsons/graphs_large.json",
-                "src/main/resources/jsons/graphs_extra_large.json",
+                "src/main/resources/jsons/graphs_extra_large.json"
         };
         for (String file : graphFiles) {
             System.out.println("\nLoading graphs from: " + file);
@@ -22,6 +22,7 @@ public class Main {
                 System.out.println("Failed to load graphs from file: " + file);
                 continue;
             }
+            System.out.println("Loaded " + graphs.size() + " graphs successfully.");
             for (Graph graph : graphs) {
                 MSTResult resultKruskal = Kruskal.run(graph);
                 System.out.println("Kruskal result -> Cost: " + resultKruskal.getTotalCost() +
@@ -36,7 +37,6 @@ public class Main {
                 ResultsWriter.writeToJson("results/Prim_" + graph.id() + ".json", resultPrim);
             }
         }
-
         System.out.println("\n===== MST Analysis Complete =====");
     }
 }

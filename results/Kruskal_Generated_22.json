@@ -1,0 +1,1 @@
+{"algorithm":"Kruskal","graphId":"Generated_22","edges":[{"from":"N3","to":"N0","weight":4},{"from":"N0","to":"N1","weight":4},{"from":"N4","to":"N0","weight":6},{"from":"N5","to":"N2","weight":11}],"totalCost":25.0,"executionTimeMs":0.0254,"operationsCount":20}
