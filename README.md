@@ -2,7 +2,7 @@
 # Assignment 3 by Tulebayeva Marzhan from SE-2423
 # **In-depth Analytical Report on Prim's and Kruskal's Algorithms**
 ## 1. Introduction
-In the study of Minimum Spanning Trees (MSTs), Prim’s and Kruskal’s algorithms stand as two of the most commonly used methods for solving the problem. Both are greedy algorithms, but they differ in the approach they take to select edges and form the tree. In this report, we analyze these algorithms in terms of their theoretical foundations, their performance in practice, and their implementation in the context of a project. The analysis is based on a repository, **_KruskalAndPrims_**, which provides Java implementations for both algorithms.
+In the study of Minimum Spanning Trees (MSTs), Prim’s and Kruskal’s algorithms stand as two of the most commonly used methods for solving the problem. Both are greedy algorithms, but they differ in the approach they take to select edges and form the tree. In this report, i analyze these algorithms in terms of their theoretical foundations, their performance in practice, and their implementation in the context of a project. The analysis is based on a repository, **_KruskalAndPrims_**, which provides Java implementations for both algorithms.
 ### Project Directory Structure Overview:
 Before diving into the core of the analysis, let’s first take a look at the structure of the project. Here is the organization of the files and directories used in the project:
 
@@ -48,32 +48,33 @@ KruskalAndPrim/
 **`src/main/java/org/example/algorithms/`:** This directory contains the core algorithms:
     * **Kruskal.java**: Implementation of Kruskal’s algorithm.
     * **Prim.java**: Implementation of Prim’s algorithm.
-**`src/main/java/org/example/benchmark/`:** Houses the benchmark utilities to measure performance.
+* **`src/main/java/org/example/benchmark/`:** Houses the benchmark utilities to measure performance.
     * **BenchmarkRunner.java**: Runs performance tests and benchmarks the algorithms.
-**`src/main/java/org/example/graph/`:** Contains the graph-related classes.
+* **`src/main/java/org/example/graph/`:** Contains the graph-related classes.
     * **Edge.java**: Defines the edge structure, which holds the weight and the vertices it connects.
     * **Graph.java**: The graph representation used by the algorithms.
     * **UnionFind.java**: Implements the Union-Find data structure used in Kruskal’s algorithm to detect cycles.
-**`src/main/java/org/example/io/`:** Responsible for input/output operations.
+* **`src/main/java/org/example/io/`:** Responsible for input/output operations.
     * **GraphGenerator.java**: Generates graphs for testing.
     * **GraphLoader.java**: Loads graph datasets.
     * **ResultsWriter.java**: Writes the results of the benchmarks to output files.
-**`src/main/java/org/example/model/`:** Defines output data models.
+* **`src/main/java/org/example/model/`:** Defines output data models.
     * **MSTOutput.java**: Represents the output of MST algorithms.
     * **MSTResult.java**: Holds the result details of the MST computation.
-**`resources/`:** This folder stores datasets and results.
+* **`resources/`:** This folder stores datasets and results.
     * **datasets/**: Contains different graph datasets for testing and benchmarking.
     * **benchmark_results.csv**: Stores the benchmark results for the MST algorithms.
 
 ---
 
-## 2**. Theory and Formulas**
+## 2. **Theory and Formulas**
 ### 2.1. **Prim's Algorithm**
 
 Prim’s algorithm is a greedy algorithm that adds edges to an MST, starting from a single vertex and selecting the minimum weight edge that connects to a vertex outside the MST. The time complexity of Prim’s algorithm using a priority queue is:
-[
+
+\[
 T_{\text{Prim}}(V, E) = O(E \log V)
-]
+\]
 
 Where:
 
@@ -84,9 +85,9 @@ Where:
 
 Kruskal’s algorithm is another greedy approach, but it operates on edges rather than vertices. It sorts the edges by weight and adds them one by one to the MST, ensuring no cycles are formed. The time complexity of Kruskal’s algorithm is:
 
-[
+\[
 T_{\text{Kruskal}}(V, E) = O(E \log E)
-]
+\]
 
 Where:
 
