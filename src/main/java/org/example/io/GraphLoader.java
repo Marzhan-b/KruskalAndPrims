@@ -19,8 +19,15 @@ public class GraphLoader {
                         .map(GraphLoader::buildGraphFromMap)
                         .filter(Objects::nonNull)
                         .collect(Collectors.toList());
+            } else {
+                return new ArrayList<>(); //
             }
-        } catch (Exception ignored) {
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+
+        if (graphsList.isEmpty()) {
+            return new ArrayList<>();
         }
         graphsList.sort(Comparator.comparingInt(g -> {
             try {
@@ -29,26 +36,10 @@ public class GraphLoader {
                 return Integer.MAX_VALUE;
             }
         }));
-        Set<Integer> existingIds = graphsList.stream()
-                .map(g -> {
-                    try {
-                        return Integer.parseInt(g.id());
-                    } catch (NumberFormatException e) {
-                        return -1;
-                    }
-                })
-                .filter(id -> id > 0)
-                .collect(Collectors.toCollection(TreeSet::new));
-        for (int id = 1; id <= REQUIRED_GRAPH_COUNT; id++) {
-            if (!existingIds.contains(id)) {
-                Graph generated = generateRandomGraph(String.valueOf(id));
-                graphsList.add(generated);
-            }
-        }
-        graphsList.sort(Comparator.comparingInt(g -> Integer.parseInt(g.id())));
 
         return graphsList;
     }
+
 
     private static Graph buildGraphFromMap(Map<String, Object> graphData) {
         try {
