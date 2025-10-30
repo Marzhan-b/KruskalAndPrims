@@ -8,7 +8,7 @@ public class ResultsWriter {
         try {
             ObjectMapper mapper = new ObjectMapper();
             File outputFile = new File(filePath);
-            outputFile.getParentFile().mkdirs(); // Создание директорий, если они не существуют
+            outputFile.getParentFile().mkdirs();
             mapper.writeValue(outputFile, result);
             System.out.println("Results saved to: " + filePath);
         } catch (IOException e) {

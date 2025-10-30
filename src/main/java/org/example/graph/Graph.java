@@ -15,6 +15,7 @@ public class Graph {
         this.edges = new ArrayList<>(edges);
         this.adj = new HashMap<>();
         this.indexMap = new HashMap<>();
+
         for (int i = 0; i < vertices.size(); i++) {
             String vertex = vertices.get(i);
             indexMap.put(vertex, i);

@@ -35,8 +35,12 @@ public class MSTOutput {
             this.edges = edges;
         }
 
-        public int getVertices() { return vertices; }
-        public int getEdges() { return edges; }
+        public int getVertices() {
+            return vertices;
+        }
+        public int getEdges() {
+            return edges;
+        }
     }
     public static class MSTData {
         private List<Edge> mst_edges;
@@ -51,9 +55,17 @@ public class MSTOutput {
             this.execution_time_ms = execution_time_ms;
         }
 
-        public List<Edge> getMst_edges() { return mst_edges; }
-        public double getTotal_cost() { return total_cost; }
-        public long getOperations_count() { return operations_count; }
-        public double getExecution_time_ms() { return execution_time_ms; }
+        public List<Edge> getMst_edges() {
+            return mst_edges;
+        }
+        public double getTotal_cost() {
+            return total_cost;
+        }
+        public long getOperations_count() {
+            return operations_count;
+        }
+        public double getExecution_time_ms() {
+            return execution_time_ms;
+        }
     }
 }
